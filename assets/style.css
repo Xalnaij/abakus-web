@@ -11,12 +11,12 @@ html,body{
     height: 100px;
 }
 
+.center{
+    margin: auto;
+}
+
 .stange{
     margin:auto;
     background-color:silver;
-    height: 25px;
-}
-
-.align-right{
-    float:right;
+    height: 10px;
 }
