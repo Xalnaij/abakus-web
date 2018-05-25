@@ -16,3 +16,7 @@ html,body{
     background-color:silver;
     height: 25px;
 }
+
+.align-right{
+    float:right;
+}
