@@ -45,3 +45,17 @@ html,body{
     text-align: -moz-center;
     text-align: -webkit-center;
 }
+
+.format-input{
+    color:white;
+    text-align: right;
+    text-align: -moz-right;
+    text-align: -webkit-right;
+}
+
+.format-bteingabe{
+    color:white;
+    text-align: left;
+    text-align: -moz-left;
+    text-align: -webkit-left;
+}
