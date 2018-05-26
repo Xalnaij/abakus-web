@@ -47,6 +47,7 @@ $(".stange").on('click', '.align-img-left', function () {
     console.log(count.length);
     console.log(length);
 
+    // wird ausgelöst wenn alle aufeinmal verschoben werden
     if (length == 9) {
         //die elemente in als jquery objekte in variablen speichern um im setTimeout auf sie zuzugreifen
         var element = $(this);
@@ -62,6 +63,7 @@ $(".stange").on('click', '.align-img-left', function () {
             }, 1500);
         }, 1500);
     }
+    //wird ausgelöst wenn die reihe vervollständigt wurde
     else if (count.length == 10) {
         var element = $(this);
         setTimeout(function () {
