@@ -11,12 +11,33 @@ html,body{
     height: 100px;
 }
 
-.center{
-    margin: auto;
-}
-
 .stange{
     margin:auto;
     background-color:silver;
     height: 10px;
+}
+
+.align-img-left{
+    position:relative;
+    left:0%;
+    vertical-align:middle;
+    height: 40px;
+    margin-top:-18px;
+    transition:all 1s linear;
+}
+
+.align-img-right{
+    position:relative;
+    left: 53%;
+    vertical-align:middle;
+    height: 40px;
+    margin-top:-18px;
+    transition:all 1s linear;
+}
+
+.format-result{
+    color:white;
+    text-align: center;
+    text-align: -moz-center;
+    text-align: -webkit-center;
 }
