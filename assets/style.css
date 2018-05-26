@@ -2,6 +2,10 @@ html,body{
     background-color:black;
 }
 
+.freeze {
+    pointer-events:none;
+}
+
 .abstand{
     margin-top:25px;
 }
