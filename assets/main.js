@@ -250,12 +250,13 @@ $("#btrechne")
 					weiterBeiEiner();
 					summe += rechnen2;
 					}else{
+					weiterBeiEinerMinus();
 					summe -= rechnen2;	
 					}
 					
 					$("#result").text(summe.toString());
 				});
-// Rechen Schritte
+// Rechen Schritte Plus
 
 function weiterBeiEiner(){
 	zehnerueber = 0;
@@ -652,7 +653,405 @@ function weiterBeiZehntausender() {
 	}, 1500);
 }
 
-// Simple Rechnung
+//Rechen Schritte Minus
+
+function weiterBeiEinerMinus(){
+	zehnerueber = 0;
+	hunderterueber = 0;
+	tausenderueber = 0;
+	zehntausenderueber = 0;
+
+	// Einer
+	if (einer != 0) {
+		einerreminus();
+	}
+	// Wenn Überschlag zu Zehner
+	if (zehnerueber == 1) {
+		setTimeout(
+				function() {
+					ueberschlageinerminus();
+					// Wenn Überschlag zu Hunderter
+					if (hunderterueber == 1) {
+						setTimeout(
+								function() {
+									ueberschlagzehnerminus();
+									// Wenn Überschlag zu
+									// Tausender
+									if (tausenderueber == 1) {
+										setTimeout(
+												function() {
+													ueberschlaghunderterminus();
+													// Wenn
+													// Überschlag
+													// zu
+													// Zehntausender
+													if (zehntausenderueber == 1) {
+														setTimeout(
+																function() {
+																	ueberschlagtausenderminus();
+																	// Einer
+																	// Fertig
+																	setTimeout(
+																			function() {
+																				if (zehner == 0
+																						&& resteiner == 0) {
+																					if (hunderter == 0
+																							&& restzehner == 0) {
+																						if (tausender == 0
+																								&& resthunderter == 0) {
+																							if (zehntausender == 0
+																									&& resttausender == 0) {
+																								releasen();
+																							} else {
+																								weiterBeiZehntausenderMinus()
+																							}
+																						} else {
+																							weiterBeiTausenderMinus()
+																						}
+																					} else {
+																						weiterBeiHunderterMinus()
+																					}
+																				} else {
+																					weiterBeiZehnerMinus()
+																				}
+																			},
+																			1500);
+																},
+																1500);
+														// Wenn
+														// kein
+														// Überschlag
+														// zu
+														// Zehntausender
+													} else {
+														setTimeout(
+																function() {
+																	if (zehner == 0
+																			&& resteiner == 0) {
+																		if (hunderter == 0
+																				&& restzehner == 0) {
+																			if (tausender == 0
+																					&& resthunderter == 0) {
+																				if (zehntausender == 0
+																						&& resttausender == 0) {
+																					releasen();
+																				} else {
+																					weiterBeiZehntausenderMinus()
+																				}
+																			} else {
+																				weiterBeiTausenderMinus()
+																			}
+																		} else {
+																			weiterBeiHunderterMinus()
+																		}
+																	} else {
+																		weiterBeiZehnerMinus()
+																	}
+																},
+																1500);
+													}
+												}, 1500);
+										// Wenn kein Überschlag
+										// zu Tausender
+									} else {
+										setTimeout(
+												function() {
+													if (zehner == 0
+															&& resteiner == 0) {
+														if (hunderter == 0
+																&& restzehner == 0) {
+															if (tausender == 0
+																	&& resthunderter == 0) {
+																if (zehntausender == 0
+																		&& resttausender == 0) {
+																	releasen();
+																} else {
+																	weiterBeiZehntausenderMinus()
+																}
+															} else {
+																weiterBeiTausenderMinus()
+															}
+														} else {
+															weiterBeiHunderterMinus()
+														}
+													} else {
+														weiterBeiZehnerMinus()
+													}
+												}, 1500);
+									}
+								}, 1500);
+						// Wenn Überschlag zu Hunderter
+					} else {
+						setTimeout(
+								function() {
+									if (zehner == 0
+											&& resteiner == 0) {
+										if (hunderter == 0
+												&& restzehner == 0) {
+											if (tausender == 0
+													&& resthunderter == 0) {
+												if (zehntausender == 0
+														&& resttausender == 0) {
+													releasen();
+												} else {
+													weiterBeiZehntausenderMinus()
+												}
+											} else {
+												weiterBeiTausenderMinus()
+											}
+										} else {
+											weiterBeiHunderterMinus()
+										}
+									} else {
+										weiterBeiZehnerMinus()
+									}
+								}, 1500);
+					}
+				}, 1500);
+		// Wenn kein Überschlag zu Zehner
+	} else {
+		setTimeout(function() {
+			if (zehner == 0 && resteiner == 0) {
+				if (hunderter == 0 && restzehner == 0) {
+					if (tausender == 0 && resthunderter == 0) {
+						if (zehntausender == 0
+								&& resttausender == 0) {
+							releasen();
+						} else {
+							weiterBeiZehntausenderMinus()
+						}
+					} else {
+						weiterBeiTausenderMinus()
+					}
+				} else {
+					weiterBeiHunderterMinus()
+				}
+			} else {
+				weiterBeiZehnerMinus()
+			}
+		}, 1500);
+	}	
+}
+
+function weiterBeiZehnerMinus() {
+	zehnerueber = 0;
+	hunderterueber = 0;
+	tausenderueber = 0;
+	zehntausenderueber = 0;
+	// Zehner
+	if (zehner != 0) {
+		zehnerreminus();
+	}
+	if (resteiner != 0) {
+		einerrestminus();
+	}
+	// Wenn Überschlag zu Hunderter
+	if (hunderterueber == 1) {
+		setTimeout(function() {
+			ueberschlagzehnerminus();
+			// Wenn Überschlag zu Tausender
+			if (tausenderueber == 1) {
+				setTimeout(function() {
+					ueberschlaghunderterminus();
+					// Wenn Überschlag zu Zehntausender
+					if (zehntausenderueber == 1) {
+						setTimeout(function() {
+							ueberschlagtausenderminus();
+							// Einer Fertig
+							setTimeout(function() {
+								if (hunderter == 0 && restzehner == 0) {
+									if (tausender == 0 && resthunderter == 0) {
+										if (zehntausender == 0
+												&& resttausender == 0) {
+											releasen();
+										} else {
+											weiterBeiZehntausenderMinus()
+										}
+									} else {
+										weiterBeiTausenderMinus()
+									}
+								} else {
+									weiterBeiHunderterMinus()
+								}
+							}, 1500);
+						}, 1500);
+						// Wenn kein Überschlag zu Zehntausender
+					} else {
+						setTimeout(function() {
+							if (hunderter == 0 && restzehner == 0) {
+								if (tausender == 0 && resthunderter == 0) {
+									if (zehntausender == 0
+											&& resttausender == 0) {
+										releasen();
+									} else {
+										weiterBeiZehntausenderMinus()
+									}
+								} else {
+									weiterBeiTausenderMinus()
+								}
+							} else {
+								weiterBeiHunderterMinus()
+							}
+						}, 1500);
+					}
+				}, 1500);
+				// Wenn kein Überschlag zu Tausender
+			} else {
+				setTimeout(function() {
+					if (hunderter == 0 && restzehner == 0) {
+						if (tausender == 0 && resthunderter == 0) {
+							if (zehntausender == 0 && resttausender == 0) {
+								releasen();
+							} else {
+								weiterBeiZehntausenderMinus()
+							}
+						} else {
+							weiterBeiTausenderMinus()
+						}
+					} else {
+						weiterBeiHunderterMinus()
+					}
+				}, 1500);
+			}
+		}, 1500);
+		// Wenn Überschlag zu Hunderter
+	} else {
+		setTimeout(function() {
+			if (hunderter == 0 && restzehner == 0) {
+				if (tausender == 0 && resthunderter == 0) {
+					if (zehntausender == 0 && resttausender == 0) {
+						releasen();
+					} else {
+						weiterBeiZehntausenderMinus()
+					}
+				} else {
+					weiterBeiTausenderMinus()
+				}
+			} else {
+				weiterBeiHunderterMinus()
+			}
+		}, 1500);
+	}
+}
+
+function weiterBeiHunderterMinus() {
+	zehnerueber = 0;
+	hunderterueber = 0;
+	tausenderueber = 0;
+	zehntausenderueber = 0;
+	// Hunderter
+	if (hunderter != 0) {
+		hunderterreminus();
+	}
+	if (restzehner != 0) {
+		zehnerrestminus();
+	}
+	// Wenn Überschlag zu Tausender
+	if (tausenderueber == 1) {
+		setTimeout(function() {
+			ueberschlaghunderterminus();
+			// Wenn Überschlag zu Zehntausender
+			if (zehntausenderueber == 1) {
+				setTimeout(function() {
+					ueberschlagtausenderminus();
+					// Einer Fertig
+					setTimeout(function() {
+						if (tausender == 0 && resthunderter == 0) {
+							if (zehntausender == 0 && resttausender == 0) {
+								releasen();
+							} else {
+								weiterBeiZehntausenderMinus()
+							}
+						} else {
+							weiterBeiTausenderMinus()
+						}
+					}, 1500);
+				}, 1500);
+				// Wenn kein Überschlag zu Zehntausender
+			} else {
+				setTimeout(function() {
+					if (tausender == 0 && resthunderter == 0) {
+						if (zehntausender == 0 && resttausender == 0) {
+							releasen();
+						} else {
+							weiterBeiZehntausenderMinus()
+						}
+					} else {
+						weiterBeiTausenderMinus()
+					}
+				}, 1500);
+			}
+		}, 1500);
+		// Wenn kein Überschlag zu Tausender
+	} else {
+		setTimeout(function() {
+			if (tausender == 0 && resthunderter == 0) {
+				if (zehntausender == 0 && resttausender == 0) {
+					releasen();
+				} else {
+					weiterBeiZehntausenderMinus()
+				}
+			} else {
+				weiterBeiTausenderMinus()
+			}
+		}, 1500);
+	}
+}
+
+function weiterBeiTausenderMinus() {
+	zehnerueber = 0;
+	hunderterueber = 0;
+	tausenderueber = 0;
+	zehntausenderueber = 0;
+	// Tausender
+	if (tausender != 0) {
+		tausenderreminus();
+	}
+	if (resthunderter != 0) {
+		hunderterrestminus();
+	}
+	// Wenn Überschlag zu Zehntausender
+	if (zehntausenderueber == 1) {
+		setTimeout(function() {
+			ueberschlagtausenderminus();
+			// Einer Fertig
+			setTimeout(function() {
+				if (zehntausender == 0 && resttausender == 0) {
+					releasen();
+				} else {
+					weiterBeiZehntausenderMinus()
+				}
+			}, 1500);
+		}, 1500);
+		// Wenn kein Überschlag zu Zehntausender
+	} else {
+		setTimeout(function() {
+			if (zehntausender == 0 && resttausender == 0) {
+				releasen();
+			} else {
+				weiterBeiZehntausenderMinus()
+			}
+		}, 1500);
+	}
+}
+
+function weiterBeiZehntausenderMinus() {
+	zehnerueber = 0;
+	hunderterueber = 0;
+	tausenderueber = 0;
+	zehntausenderueber = 0;
+	// Zehntausender
+	zehntausenderreminus();
+	if (resttausender != 0) {
+		tausenderrestminus();
+	}
+	setTimeout(function() {
+		releasen();
+	}, 1500);
+}
+
+
+// Simple Rechnungen Plus
 function einerre() {
 	if ($("#eins").children(".stange").children(".align-img-left").length > einer) {
 		for (var i = 0; i <= einer - 1; i++) {
@@ -800,6 +1199,161 @@ function tausenderrest() {
 				.addClass("align-img-right").removeClass("align-img-left");
 	}
 }
+
+//Simple Rechnungen Minus
+function einerreminus() {
+	if ($("#eins").children(".stange").children(".align-img-right").length > einer-1) {
+		for (var i = 0; i <= einer - 1; i++) {
+			$("#eins").children(".stange").children(".align-img-right:first")
+					.addClass("align-img-left").removeClass("align-img-right");
+		}
+	} else {
+		zehnerueber = 1;
+		resteiner = einer
+				- $("#eins").children(".stange").children(".align-img-right").length;
+
+		$("#eins").children(".stange").children(".align-img-right").addClass(
+				"align-img-left").removeClass("align-img-right");
+	}
+}
+
+function zehnerreminus() {
+	if ($("#zehn").children(".stange").children(".align-img-right").length > zehner-1) {
+		for (var i = 0; i <= zehner - 1; i++) {
+			$("#zehn").children(".stange").children(".align-img-right:first")
+					.addClass("align-img-left").removeClass("align-img-right");
+		}
+	} else {
+		hunderterueber = 1;
+		restzehner = zehner
+				- $("#zehn").children(".stange").children(".align-img-right").length;
+
+		$("#zehn").children(".stange").children(".align-img-right").addClass(
+				"align-img-left").removeClass("align-img-right");
+	}
+}
+
+function hunderterreminus() {
+	if ($("#hundert").children(".stange").children(".align-img-right").length > hunderter-1) {
+		for (var i = 0; i <= hunderter - 1; i++) {
+			$("#hundert").children(".stange").children(".align-img-right:first")
+					.addClass("align-img-left").removeClass("align-img-right");
+		}
+	} else {
+		tausenderueber = 1;
+		resthunderter = hunderter
+				- $("#hundert").children(".stange").children(".align-img-right").length;
+
+		$("#hundert").children(".stange").children(".align-img-right").addClass(
+				"align-img-left").removeClass("align-img-right");
+	}
+}
+
+function tausenderreminus() {
+	if ($("#tausend").children(".stange").children(".align-img-right").length > tausender-1) {
+		for (var i = 0; i <= tausender - 1; i++) {
+			$("#tausend").children(".stange").children(".align-img-right:first")
+					.addClass("align-img-left").removeClass("align-img-right");
+		}
+	} else {
+		zehntausenderueber = 1;
+		resttausender = tausender
+				- $("#tausend").children(".stange").children(".align-img-right").length;
+
+		$("#tausend").children(".stange").children(".align-img-right").addClass(
+				"align-img-left").removeClass("align-img-right");
+	}
+}
+
+function zehntausenderreminus() {
+	if ($("#zehntausend").children(".stange").children(".align-img-right").length > zehntausender) {
+		for (var i = 0; i <= zehntausender - 1; i++) {
+			$("#zehntausend").children(".stange").children(
+					".align-img-right:first").addClass("align-img-left")
+					.removeClass("align-img-right");
+		}
+	} else {
+		zehnerueber = 1;
+		restzehntausender = zehntausender
+				- $("#zehntausend").children(".stange").children(
+						".align-img-right").length;
+
+		$("#zehntausend").children(".stange").children(".align-img-right")
+				.addClass("align-img-left").removeClass("align-img-right");
+	}
+}
+
+function ueberschlageinerminus() {
+	$("#zehn").children(".stange").children(".align-img-right:first").addClass(
+			"align-img-left").removeClass("align-img-right");
+	
+	$("#eins").children(".stange").children(".align-img-left").addClass(
+			"align-img-right").removeClass("align-img-left");
+
+	if ($("#zehn").children(".stange").children(".align-img-right").length == 0) {
+		hunderterueber = 1;
+	}
+}
+
+function ueberschlagzehnerminus() {
+	$("#hundert").children(".stange").children(".align-img-right:first")
+			.addClass("align-img-left").removeClass("align-img-right");
+	$("#zehn").children(".stange").children(".align-img-left").addClass(
+			"align-img-right").removeClass("align-img-left");
+	if ($("#hundert").children(".stange").children(".align-img-right").length == 0) {
+		tausenderueber = 1;
+	}
+}
+
+function ueberschlaghunderterminus() {
+	$("#tausend").children(".stange").children(".align-img-right:first")
+			.addClass("align-img-left").removeClass("align-img-right");
+	$("#hundert").children(".stange").children(".align-img-left").addClass(
+			"align-img-right").removeClass("align-img-left");
+	if ($("#tausend").children(".stange").children(".align-img-right").length == 0) {
+		zehntausenderueber = 1;
+	}
+}
+
+function ueberschlagtausenderminus() {
+	$("#zehntausend").children(".stange").children(".align-img-right:first")
+			.addClass("align-img-left").removeClass("align-img-right");
+	$("#tausend").children(".stange").children(".align-img-left").addClass(
+			"align-img-right").removeClass("align-img-left");
+}
+
+function einerrestminus() {
+	for (var i = 0; i <= resteiner - 1; i++) {
+		$("#eins").children(".stange").children(".align-img-right:first")
+				.addClass("align-img-left").removeClass("align-img-right");
+	}
+}
+
+function zehnerrestminus() {
+	for (var i = 0; i <= restzehner - 1; i++) {
+		$("#zehn").children(".stange").children(".align-img-right:first")
+				.addClass("align-img-left").removeClass("align-img-right");
+	}
+}
+
+function hunderterrestminus() {
+	for (var i = 0; i <= resthunderter - 1; i++) {
+		$("#hundert").children(".stange").children(".align-img-right:first")
+				.addClass("align-img-left").removeClass("align-img-right");
+	}
+}
+
+function tausenderrestminus() {
+	for (var i = 0; i <= resttausender - 1; i++) {
+		$("#tausend").children(".stange").children(".align-img-right:first")
+				.addClass("align-img-left").removeClass("align-img-right");
+	}
+}
+
+
+
+
+
 
 function releasen() {
 	$("#btrechne").prop('disabled', false).text("Rechne");
