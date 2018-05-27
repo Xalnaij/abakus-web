@@ -201,10 +201,10 @@ var hunderterueber = 0;
 var tausenderueber = 0;
 var zehntausenderueber = 0;
 
-var resteiner = einer
-var restzehner = einer
-var resthunderter = einer
-var resttausender = einer
+var resteiner = 0;
+var restzehner = 0;
+var resthunderter = 0;
+var resttausender = 0;
 
 // Eingabe benutzen
 $("#btrechne")
@@ -213,14 +213,27 @@ $("#btrechne")
 				function() {
 					einfrieren();
 					amrechnen = true;
-					var ziffern = rechnen.split("");
+
 					einer = 0;
 					zehner = 0;
 					hunderter = 0;
 					tausender = 0;
 					zehntausender = 0;
+					
+					resteiner = 0;
+					restzehner = 0;
+					resthunderter = 0;
+					resttausender = 0;
+					
+					zehnerueber = 0;
+					hunderterueber = 0;
+					tausenderueber = 0;
+					zehntausenderueber = 0;
+					
+					var recheneingabe2 = $("#optext").val();
+					rechnen = recheneingabe2.substring(1, recheneingabe2.length);
 					var rechnen2 = parseInt(rechnen);
-
+					var ziffern = rechnen.split("");
 					// zerlegen
 					if (rechnen.length == 1) {
 						einer = ziffern[0];
@@ -244,9 +257,9 @@ $("#btrechne")
 						einer = ziffern[4];
 					}
 
-					recheneingabe = $("#optext").val();
+
 					
-					if (recheneingabe.charAt(0) == "+") {					
+					if (recheneingabe2.charAt(0) == "+") {					
 					weiterBeiEiner();
 					summe += rechnen2;
 					}else{
@@ -1140,6 +1153,8 @@ function ueberschlageiner() {
 	$("#eins").children(".stange").children(".align-img-right").addClass(
 			"align-img-left").removeClass("align-img-right");
 
+
+
 	if ($("#zehn").children(".stange").children(".align-img-left").length == 0) {
 		hunderterueber = 1;
 	}
@@ -1150,6 +1165,7 @@ function ueberschlagzehner() {
 			.addClass("align-img-right").removeClass("align-img-left");
 	$("#zehn").children(".stange").children(".align-img-right").addClass(
 			"align-img-left").removeClass("align-img-right");
+
 	if ($("#hundert").children(".stange").children(".align-img-left").length == 0) {
 		tausenderueber = 1;
 	}
@@ -1160,6 +1176,9 @@ function ueberschlaghunderter() {
 			.addClass("align-img-right").removeClass("align-img-left");
 	$("#hundert").children(".stange").children(".align-img-right").addClass(
 			"align-img-left").removeClass("align-img-right");
+	
+
+
 	if ($("#tausend").children(".stange").children(".align-img-left").length == 0) {
 		zehntausenderueber = 1;
 	}
@@ -1170,6 +1189,8 @@ function ueberschlagtausender() {
 			.addClass("align-img-right").removeClass("align-img-left");
 	$("#tausend").children(".stange").children(".align-img-right").addClass(
 			"align-img-left").removeClass("align-img-right");
+	
+
 }
 
 function einerrest() {
@@ -1177,6 +1198,7 @@ function einerrest() {
 		$("#eins").children(".stange").children(".align-img-left:last")
 				.addClass("align-img-right").removeClass("align-img-left");
 	}
+	resteiner = 0;
 }
 
 function zehnerrest() {
@@ -1184,6 +1206,7 @@ function zehnerrest() {
 		$("#zehn").children(".stange").children(".align-img-left:last")
 				.addClass("align-img-right").removeClass("align-img-left");
 	}
+	restzehner = 0;
 }
 
 function hunderterrest() {
@@ -1191,6 +1214,7 @@ function hunderterrest() {
 		$("#hundert").children(".stange").children(".align-img-left:last")
 				.addClass("align-img-right").removeClass("align-img-left");
 	}
+	resthunderter = 0;
 }
 
 function tausenderrest() {
@@ -1198,6 +1222,7 @@ function tausenderrest() {
 		$("#tausend").children(".stange").children(".align-img-left:last")
 				.addClass("align-img-right").removeClass("align-img-left");
 	}
+	resttausender = 0;
 }
 
 //Simple Rechnungen Minus
@@ -1323,31 +1348,45 @@ function ueberschlagtausenderminus() {
 }
 
 function einerrestminus() {
-	for (var i = 0; i <= resteiner - 1; i++) {
+	for (var i = 0; i <= resteiner-1; i++) {
 		$("#eins").children(".stange").children(".align-img-right:first")
 				.addClass("align-img-left").removeClass("align-img-right");
+
+
 	}
+	resteiner = 0;
 }
 
 function zehnerrestminus() {
-	for (var i = 0; i <= restzehner - 1; i++) {
+	for (var i = 0; i <= restzehner-1; i++) {
 		$("#zehn").children(".stange").children(".align-img-right:first")
 				.addClass("align-img-left").removeClass("align-img-right");
+
+
+
 	}
+	restzehner = 0;
 }
 
 function hunderterrestminus() {
-	for (var i = 0; i <= resthunderter - 1; i++) {
+	for (var i = 0; i <= resthunderter-1; i++) {
 		$("#hundert").children(".stange").children(".align-img-right:first")
 				.addClass("align-img-left").removeClass("align-img-right");
+
+
+
 	}
+	resthunderter = 0;
 }
 
 function tausenderrestminus() {
-	for (var i = 0; i <= resttausender - 1; i++) {
+	for (var i = 0; i <= resttausender-1; i++) {
 		$("#tausend").children(".stange").children(".align-img-right:first")
 				.addClass("align-img-left").removeClass("align-img-right");
+
+
 	}
+	resttausender = 0;
 }
 
 
